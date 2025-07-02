@@ -8,17 +8,13 @@
 
 ## ✅ Objective
 
-To build a machine learning system that classifies chest X-ray images into **Normal**, **Pneumonia**, and **Tuberculosis (TB)** classes. The project includes:
-
-* Training a deep learning model (e.g., DenseNet121, ResNet50)
-* Using **Grad-CAM** to visualize decision regions (explainability)
-* Creating an interactive web app to upload images and get predictions
+Build a machine learning system to classify chest X-ray images into **Normal**, **Pneumonia**, and **Tuberculosis (TB)** classes, with model explainability and a user-friendly web app.
 
 ---
 
 ## 🔍 Problem Statement
 
-Chest-related diseases like Pneumonia and TB are leading causes of illness and death globally, especially in rural areas with a shortage of radiologists. An AI-powered tool that can **automatically detect signs of lung disease** from chest X-rays can assist healthcare workers in early screening and triage.
+Chest-related diseases like Pneumonia and TB are leading causes of illness and death globally, especially in areas with a shortage of radiologists. An AI-powered tool that can **automatically detect signs of lung disease** from chest X-rays can assist healthcare workers in early screening and triage.
 
 ---
 
@@ -36,29 +32,14 @@ Chest-related diseases like Pneumonia and TB are leading causes of illness and d
 ## 📊 Dataset Sources
 
 ### 1. **Chest X-ray Pneumonia Dataset (Kermany et al.)**
-
-* 📦 Contains: **Normal** and **Pneumonia** (bacterial & viral)
-* 👨‍⚕️ Hospital: Guangzhou Women and Children's Medical Center, China
-* 📈 \~5,000 images
-* ✅ Organized in `train`, `test`, `val` folders
-
-🔗 [Kaggle Dataset Link](https://www.kaggle.com/paultimothymooney/chest-xray-pneumonia)
-
----
+- **Classes:** Normal, Pneumonia (bacterial & viral)
+- **Source:** Guangzhou Women and Children's Medical Center, China
+- **Link:** [Kaggle Dataset](https://www.kaggle.com/paultimothymooney/chest-xray-pneumonia)
 
 ### 2. **Tuberculosis X-ray Datasets (NIH - Montgomery & Shenzhen)**
-
-* 📦 Contains: **TB** and **Normal**
-* 👨‍⚕️ Sources:
-
-  * **Shenzhen** (China): Shenzhen No.3 Hospital
-  * **Montgomery** (USA): Department of Health and Human Services, Maryland
-* 📈 \~800 images
-* Requires request via NIH
-
-🔗 [NIH Dataset Page](https://lhncbc.nlm.nih.gov/publication/pub9931)
-
-> ✅ You'll receive the ZIP files via email after submitting a request form.
+- **Classes:** TB, Normal
+- **Sources:** Shenzhen No.3 Hospital (China), Montgomery County (USA)
+- **Link:** [NIH Dataset Page](https://lhncbc.nlm.nih.gov/publication/pub9931)
 
 ---
 
@@ -70,36 +51,98 @@ Chest-related diseases like Pneumonia and TB are leading causes of illness and d
 | ML/DL Framework | PyTorch                                        |
 | Data Handling   | NumPy, Pandas, OpenCV                          |
 | Visualization   | Matplotlib, Seaborn                            |
-| Model           | ResNet50 / DenseNet121                         |
+| Model           | DenseNet121 (default), ResNet50                |
 | Explainability  | Grad-CAM (`pytorch-grad-cam`)                  |
-| Web App         | Streamlit or Flask                             |
-| Deployment      | Streamlit Cloud / Render / Hugging Face Spaces |
+| Web App         | Streamlit                                      |
+| Notebooks       | Jupyter Notebook                               |
 
 ---
 
 ## 🧠 Skills You'll Learn
 
-* End-to-end machine learning workflow
-* Computer vision using CNNs
-* Data preprocessing and augmentation
-* Model evaluation (accuracy, precision, confusion matrix)
-* Explainability with Grad-CAM
-* Basic frontend deployment (image input + prediction output)
+- End-to-end machine learning workflow
+- Computer vision using CNNs
+- Data preprocessing and augmentation
+- Model evaluation (accuracy, precision, confusion matrix)
+- Explainability with Grad-CAM
+- Basic frontend deployment (image input + prediction output)
 
 ---
 
-## 📁 Folder Structure Summary
+## 📁 Folder Structure
 
 ```
 chest-xray-diagnosis/
+│
+├── app/
+│   └── app.py                  # Streamlit web app
+│
 ├── data/
-│   ├── raw/             # All merged raw data
-│   └── split/           # train/val/test after processing
-├── notebooks/           # Jupyter notebooks for each stage
-├── models/              # Saved .pt model files
-├── app/                 # Streamlit or Flask app
-├── utils/               # Grad-CAM, data loader scripts
+│   ├── raw/
+│   │   ├── normal/             # Raw Normal X-rays
+│   │   ├── pneumonia/          # Raw Pneumonia X-rays
+│   │   └── tb/                 # Raw TB X-rays
+│   └── split/
+│       ├── train/
+│       │   ├── normal/
+│       │   ├── pneumonia/
+│       │   └── tb/
+│       ├── val/
+│       │   ├── normal/
+│       │   ├── pneumonia/
+│       │   └── tb/
+│       └── test/
+│           ├── normal/
+│           ├── pneumonia/
+│           └── tb/
+│
+├── models/
+│   └── .gitkeep                # Placeholder for trained models
+│
+├── notebooks/
+│   ├── 01_eda.ipynb            # Exploratory Data Analysis
+│   ├── 02_preprocessing.ipynb  # Data Preprocessing
+│   ├── 03_model_training.ipynb # Model Training & Evaluation
+│   └── 04_gradcam_explain.ipynb# Grad-CAM Explainability
+│
+├── utils/
+│   ├── data_utils.py           # Data splitting and utilities
+│   └── grad_cam_utils.py       # Grad-CAM utility functions
+│
+├── .gitignore
+├── README.md
 ├── requirements.txt
-|----.env
-└── README.md
-``` 
+└── venv/
+```
+
+---
+
+## 🚀 How to Run
+
+1. **Install dependencies:**
+   ```
+   pip install -r requirements.txt
+   ```
+
+2. **Prepare data:**
+   - Place all raw images in `data/raw/normal/`, `data/raw/pneumonia/`, and `data/raw/tb/`.
+   - Run the data splitting script:
+     ```
+     python utils/data_utils.py
+     ```
+
+3. **Explore and train:**
+   - Use the Jupyter notebooks in `notebooks/` for EDA, preprocessing, training, and explainability.
+
+4. **Run the web app:**
+   ```
+   streamlit run app/app.py
+   ```
+
+---
+
+## ⚠️ Notes
+
+- The `data/` and `models/` folders are excluded from git tracking via `.gitignore`.
+- Place your trained model files in `models/` for the web app to use.
+- The project is modular—feel free to extend or swap out models, preprocessing, or explainability methods. 
