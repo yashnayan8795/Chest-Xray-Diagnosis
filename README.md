@@ -146,3 +146,8 @@ chest-xray-diagnosis/
 - The `data/` and `models/` folders are excluded from git tracking via `.gitignore`.
 - Place your trained model files in `models/` for the web app to use.
 - The project is modular—feel free to extend or swap out models, preprocessing, or explainability methods. 
+
+## 👨‍💻 Developed by
+
+**Yash Nayan**  
+ML Enthusiast | Automating Everything | Always Shipping 🚀
