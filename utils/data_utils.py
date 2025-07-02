@@ -25,7 +25,9 @@ def split_data(raw_data_dir, split_data_dir, train_size=0.7, val_size=0.15, test
             os.makedirs(os.path.join(split_data_dir, folder, cls), exist_ok=True)
 
         # Get all image paths
-        img_paths = glob(os.path.join(raw_data_dir, cls, '*.jpeg'))
+        img_paths = []
+        for ext in ['*.jpeg', '*.jpg', '*.png']:
+            img_paths.extend(glob(os.path.join(raw_data_dir, cls, ext)))
         if not img_paths:
             logging.warning(f"No images found for class '{cls}', skipping.")
             continue
