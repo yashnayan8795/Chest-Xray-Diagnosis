@@ -150,4 +150,3 @@ chest-xray-diagnosis/
 ## 👨‍💻 Developed by
 
 **Yash Nayan**  
-ML Enthusiast | Automating Everything | Always Shipping 🚀
